@@ -1,0 +1,10 @@
+<div fxLayout="row">
+  <div *ngFor="let tentative of tentatives">
+    <ng-container *ngIf="!tentative; else elseTemplate">
+      <img src="../../../assets/coracao_vazio.png" alt="Coração vazio">
+    </ng-container>
+    <ng-template #elseTemplate>
+      <img src="../../../assets/coracao_cheio.png" alt="Coração cheio">
+    </ng-template>
+  </div>
+</div>

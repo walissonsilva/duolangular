@@ -1,0 +1,37 @@
+<mat-card class="card-content">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="top-painel">
+        <app-progress [progressPct]="progressPct"></app-progress>
+        <app-tentativas [tentatives]="tentatives"></app-tentativas>
+    </div>
+
+    <ng-container *ngIf="!(taskDone || failed); else done">
+        <div fxLayout="column">
+            <mat-card-title class="english-phrase">Traduza a frase abaixo:</mat-card-title>    
+            <mat-card-content class="frase">{{ currentEnglishPhrase }}</mat-card-content>
+        
+            <form>
+                <textarea
+                    name="translated"
+                    id="translated"
+                    cols="10"
+                    rows="10"
+                    (input)='getTranslatedText($event.target.value)'>
+                </textarea>
+            </form>
+    
+            <br>
+            
+            <button mat-raised-button color='primary' (click)='submitResponse()' id="submit-button">Submit</button>
+        </div>
+    </ng-container>
+
+    <ng-template #done>
+        <ng-container *ngIf="taskDone; else elseTemplate">
+            <h1>Congratulations!</h1>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <h1>Deu ruim...</h1>
+        </ng-template>
+        
+    </ng-template>
+</mat-card>
